@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+
+# Данные и модели
+data/raw/
+data/processed/
+models/*.pth
+models/*.onnx
+experiments/*.png
+experiments/*.csv
+experiments/*.log
+
+# IDE & OS
+.vscode/settings.json
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/

@@ -1,0 +1,23 @@
+paths:
+  data_dir: "./data"
+  model_dir: "./models"
+  exp_dir: "./experiments"
+
+dataset:
+  name: "CASIA-WebFace"
+  img_size: 112
+  batch_size: 32
+
+model:
+  backbone: "resnet50"
+  embedding_size: 512
+  device: "cpu" # изменить на cuda при наличии GPU
+
+faiss:
+  metric: "cosine"
+  nprobe: 10
+  nlist: 100
+
+eval:
+  threshold: 0.6
+  seed: 42
