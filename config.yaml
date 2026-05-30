@@ -1,23 +1,54 @@
+project:
+  name: "face_recognition_mvp"
+  seed: 42
+  device: "auto"  # auto | mps | cpu
+
 paths:
   data_dir: "./data"
-  model_dir: "./models"
-  exp_dir: "./experiments"
+  exp_dir: "./experiments/exp_001"
+  pretrained_weights: "./models/mobilefacenet.pth"
 
 dataset:
-  name: "CASIA-WebFace"
-  img_size: 112
-  batch_size: 32
+  min_images_per_id: 3
+  subset_persons: 1000
+  subset_split_ratios: [0.8, 0.2]
+  seed: 42
 
 model:
-  backbone: "resnet50"
-  embedding_size: 512
-  device: "cpu" # изменить на cuda при наличии GPU
+  type: "mobilefacenet"
+  embedding_dim: 128
+  dropout: 0.0
+  pretrained: true
+  pretrained_weights_path: null
 
-faiss:
-  metric: "cosine"
-  nprobe: 10
-  nlist: 100
+loss:
+  type: "arcface"
+  scale: 30.0
+  margin: 0.5
+  easy_margin: false
+
+training:
+  epochs: 30
+  batch_size: 64
+  instances_per_class: 4
+  lr: 1.0e-3
+  head_lr_multiplier: 10.0
+  weight_decay: 5.0e-4
+  num_workers: 4
+  val_interval: 1
+  scheduler: "cosine"
+  min_lr: 1.0e-6
+  amp: false
+  resume: null
+  early_stop_patience: null
 
 eval:
-  threshold: 0.6
-  seed: 42
+  retrieval: true
+  retrieval_k: 5
+  verification_thresholds: [0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6]
+  final_test: false
+  save_embeddings: true
+
+logging:
+  level: "INFO"
+  log_to_file: true

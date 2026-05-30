@@ -1,23 +1,40 @@
+### 🚫 `.gitignore`
+```gitignore
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
-.venv/
-env/
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
 
-# Данные и модели
-data/raw/
-data/processed/
-models/*.pth
-models/*.onnx
-experiments/*.png
-experiments/*.csv
-experiments/*.log
+# Virtual Env
+.venv/
+.env/
+ENV/
 
 # IDE & OS
-.vscode/settings.json
+.vscode/
+.idea/
+*.swp
+*.swo
 .DS_Store
 Thumbs.db
 
-# Jupyter
+# Data & Artifacts (слишком большие / генерируются локально)
+data/raw/
+data/processed/
+experiments/
+models/*.pth
+models/*.tar
+uploads/
+
+# Jupyter & Logs
 .ipynb_checkpoints/
+*.log
+*.csv
+*.npy
+*.faiss
